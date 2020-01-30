@@ -1,2 +1,5 @@
 # eyetrack_analysis
-eyetrack_analysis toolkit for matlab
+eyetrack analysis toolkit for matlab.
+
+The first version this repo containis a demo for generating a smoothed heatmap from eyetracking from supertuxkart experiment demo.
+
