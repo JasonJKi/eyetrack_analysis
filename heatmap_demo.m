@@ -1,4 +1,4 @@
-clear all; dependencies install; 
+clear all; close all; dependencies install; 
 scrn_width = 1280;
 scrn_height  = 720;
 condition_str = {'play', 'sham', 'watch'};
@@ -33,34 +33,37 @@ for i_condition = 1:3
         caxis4 = [min(eyetrack_matlab_hist(:)) max(eyetrack_matlab_hist(:))];
     end
     
-    figure('Units','normalized','Position',[0 0 1 1]); clf
+    fig = figure('Units','normalized','Position',[0 0 .3 1]); clf
     subplot(4,1,1)
     imagesc(src_img)
     caxis(caxis1)
     colorbar('westoutside')
     axis image
-    title('src')
+    title('simulus responsible correlation')
     
     subplot(4,1,2)
     imagesc(imresize(eyetrack_heatmap, [scrn_height, scrn_width]));
     axis image
     caxis(caxis2)
     colorbar('westoutside'	)
-    title('eyetrack heatmap jason')
+    title('brute force count regional movement')
     
     subplot(4,1,3)
     imshow(eyetrack_heatmap_rgb);
     axis image
     caxis(caxis3)
     colorbar('westoutside'	)
-    title('eyetrack heatmap jason rgb smoothed')
+    title('above smoothed and rgb converted')
     
     subplot(4,1,4)
     imagesc(imresize(eyetrack_matlab_hist, [scrn_height, scrn_width]));
     axis image
     caxis(caxis4)
     colorbar('westoutside'	)
-    title('eyetrack heatmap matlab hist')
+    title('matlab 2d hist')
     
     suptitle(condition_str{i_condition})
+
+    saveas(fig, ['output/demo_figure_' condition_str{i_condition}],'png')
+
 end
